@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Khwahish Sharma — DevOps Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #161616;
+      --border: #222222;
+      --accent: #00ff88;
+      --accent2: #00ccff;
+      --text: #e8e8e8;
+      --muted: #666666;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Syne', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* SCANLINE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* SECTIONS */
+    section {
+      min-height: 100vh;
+      padding: 120px 2rem 80px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    #hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: var(--sans);
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .hero-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn:hover { background: var(--accent); color: #000; }
+
+    .btn-ghost {
+      border-color: var(--border);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover { background: var(--bg3); color: var(--text); }
+
+    /* TERMINAL BLOCK */
+    .terminal {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+      font-size: 0.8rem;
+      margin: 2.5rem 0;
+      position: relative;
+    }
+
+    .terminal-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: #28c840; }
+
+    .terminal p { color: var(--muted); margin: 0.2rem 0; }
+    .terminal .cmd { color: var(--accent); }
+    .terminal .val { color: var(--accent2); }
+
+    /* SECTION HEADER */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-num {
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    h2 {
+      font-family: var(--sans);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* SKILLS GRID */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .skill-card {
+      background: var(--bg2);
+      padding: 1.5rem;
+      transition: background 0.2s;
+    }
+
+    .skill-card:hover { background: var(--bg3); }
+
+    .skill-icon {
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-name {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .skill-desc {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* SKILL TAGS */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* HOBBIES */
+    .hobbies-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .hobby-row {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      align-items: start;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 2rem;
+      transition: padding-left 0.2s;
+      cursor: default;
+    }
+
+    .hobby-row:hover { padding-left: 0.75rem; }
+    .hobby-row:first-child { border-top: 1px solid var(--border); }
+
+    .hobby-num {
+      font-size: 0.7rem;
+      color: var(--accent);
+      padding-top: 0.2rem;
+    }
+
+    .hobby-content {}
+
+    .hobby-title {
+      font-family: var(--sans);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .hobby-body {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    footer span { color: var(--accent); }
+
+    /* CURSOR BLINK */
+    .blink {
+      display: inline-block;
+      width: 8px;
+      height: 1em;
+      background: var(--accent);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.35s; }
+    .delay-4 { animation-delay: 0.5s; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      section { padding: 100px 1rem 60px; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">KS/</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO / ABOUT -->
+  <section id="about">
+    <div class="hero-tag fade-in">Available for opportunities</div>
+
+    <h1 class="fade-in delay-1">
+      Khwahish<br><span>Sharma.</span>
+    </h1>
+
+    <p class="hero-desc fade-in delay-2">
+      DevOps Engineer focused on building reliable, scalable infrastructure.
+      I automate everything — from pipelines to provisioning — so teams can
+      ship faster and sleep better.
+    </p>
+
+    <div class="terminal fade-in delay-3">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+      </div>
+      <p><span class="cmd">$ whoami</span></p>
+      <p class="val">khwahish.sharma</p>
+      <p><span class="cmd">$ cat role.txt</span></p>
+      <p class="val">DevOps Engineer | Cloud Infrastructure | CI/CD</p>
+      <p><span class="cmd">$ echo $LOCATION</span></p>
+      <p class="val">Pune, Maharashtra, India</p>
+      <p><span class="cmd">$ _</span><span class="blink"></span></p>
+    </div>
+
+    <div class="hero-btns fade-in delay-4">
+      <a href="#skills" class="btn">View Skills</a>
+      <a href="mailto:khwahish@email.com" class="btn btn-ghost">Contact Me</a>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>Skills</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon">// containers</div>
+        <div class="skill-name">Docker & Kubernetes</div>
+        <div class="skill-desc">Containerizing applications and orchestrating workloads at scale with K8s clusters.</div>
+        <div class="tags">
+          <span class="tag">Docker</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Helm</span>
+          <span class="tag">Minikube</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">// cloud</div>
+        <div class="skill-name">AWS</div>
+        <div class="skill-desc">Deploying and managing cloud infrastructure — EC2, S3, RDS, EKS, IAM, and more.</div>
+        <div class="tags">
+          <span class="tag">EC2</span>
+          <span class="tag">S3</span>
+          <span class="tag">EKS</span>
+          <span class="tag">Lambda</span>
+          <span class="tag">IAM</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">// iac</div>
+        <div class="skill-name">Terraform</div>
+        <div class="skill-desc">Writing version-controlled infrastructure as code to provision repeatable environments.</div>
+        <div class="tags">
+          <span class="tag">Terraform</span>
+          <span class="tag">Ansible</span>
+          <span class="tag">CloudFormation</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">// pipelines</div>
+        <div class="skill-name">CI/CD</div>
+        <div class="skill-desc">Designing automated pipelines from code commit to production deployment.</div>
+        <div class="tags">
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Azure DevOps</span>
+          <span class="tag">GitLab CI</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">// observability</div>
+        <div class="skill-name">Monitoring</div>
+        <div class="skill-desc">Setting up dashboards, alerts, and logs so nothing breaks silently in production.</div>
+        <div class="tags">
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">ELK Stack</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">// scripting</div>
+        <div class="skill-name">Linux & Shell</div>
+        <div class="skill-desc">Comfortable with bash scripting, system administration, and server hardening.</div>
+        <div class="tags">
+          <span class="tag">Bash</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Python</span>
+          <span class="tag">YAML</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <section id="hobbies">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Hobbies</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="hobbies-list">
+
+      <div class="hobby-row">
+        <div class="hobby-num">001</div>
+        <div class="hobby-content">
+          <div class="hobby-title">Homelab Tinkering</div>
+          <div class="hobby-body">Running a self-hosted homelab with Raspberry Pis and old machines — experimenting with Proxmox, self-hosted apps, and network setups. It's where ideas get tested before they go to real infra.</div>
+        </div>
+      </div>
+
+      <div class="hobby-row">
+        <div class="hobby-num">002</div>
+        <div class="hobby-content">
+          <div class="hobby-title">Open Source Exploration</div>
+          <div class="hobby-body">Reading through repos of DevOps tools I use daily — understanding how Kubernetes controllers, CI runners, and monitoring exporters actually work under the hood.</div>
+        </div>
+      </div>
+
+      <div class="hobby-row">
+        <div class="hobby-num">003</div>
+        <div class="hobby-content">
+          <div class="hobby-title">Gaming</div>
+          <div class="hobby-body">Strategy and simulation games — anything that involves systems thinking, resource management, and making decisions with incomplete information. The DevOps mindset transfers surprisingly well.</div>
+        </div>
+      </div>
+
+      <div class="hobby-row">
+        <div class="hobby-num">004</div>
+        <div class="hobby-content">
+          <div class="hobby-title">Tech Blogging & Learning</div>
+          <div class="hobby-body">Writing notes and summaries while learning new tools. Following the DevOps, platform engineering, and cloud-native community through blogs, YouTube, and podcasts.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Built by <span>Khwahish Sharma</span> &mdash; ready to deploy anywhere.
+  </footer>
+
+</body>
+</html>
