@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths-ignored:
-      - 'README.md'
-      - 'helm/**'
   pull_request:
     branches:
       - main
