@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Khwahish Sharma — DevOps Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khwahish Sharma â€” DevOps Engineer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Syne:wght@400;700;800&display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --bg: #0a0a0a;
@@ -21,7 +30,9 @@
       --sans: 'Syne', sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--bg);
@@ -36,13 +47,11 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.03) 2px,
-        rgba(0,0,0,0.03) 4px
-      );
+      background: repeating-linear-gradient(0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.03) 2px,
+          rgba(0, 0, 0, 0.03) 4px);
       pointer-events: none;
       z-index: 9999;
     }
@@ -50,9 +59,11 @@
     /* NAV */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      background: rgba(10,10,10,0.92);
+      background: rgba(10, 10, 10, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 2rem;
@@ -85,7 +96,9 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
 
     /* SECTIONS */
     section {
@@ -131,7 +144,9 @@
       margin-bottom: 1.5rem;
     }
 
-    h1 span { color: var(--accent); }
+    h1 span {
+      color: var(--accent);
+    }
 
     .hero-desc {
       font-size: 0.9rem;
@@ -162,14 +177,20 @@
       transition: background 0.2s, color 0.2s;
     }
 
-    .btn:hover { background: var(--accent); color: #000; }
+    .btn:hover {
+      background: var(--accent);
+      color: #000;
+    }
 
     .btn-ghost {
       border-color: var(--border);
       color: var(--muted);
     }
 
-    .btn-ghost:hover { background: var(--bg3); color: var(--text); }
+    .btn-ghost:hover {
+      background: var(--bg3);
+      color: var(--text);
+    }
 
     /* TERMINAL BLOCK */
     .terminal {
@@ -188,14 +209,36 @@
       margin-bottom: 1rem;
     }
 
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot-r { background: #ff5f57; }
-    .dot-y { background: #febc2e; }
-    .dot-g { background: #28c840; }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
 
-    .terminal p { color: var(--muted); margin: 0.2rem 0; }
-    .terminal .cmd { color: var(--accent); }
-    .terminal .val { color: var(--accent2); }
+    .dot-r {
+      background: #ff5f57;
+    }
+
+    .dot-y {
+      background: #febc2e;
+    }
+
+    .dot-g {
+      background: #28c840;
+    }
+
+    .terminal p {
+      color: var(--muted);
+      margin: 0.2rem 0;
+    }
+
+    .terminal .cmd {
+      color: var(--accent);
+    }
+
+    .terminal .val {
+      color: var(--accent2);
+    }
 
     /* SECTION HEADER */
     .section-header {
@@ -239,7 +282,9 @@
       transition: background 0.2s;
     }
 
-    .skill-card:hover { background: var(--bg3); }
+    .skill-card:hover {
+      background: var(--bg3);
+    }
 
     .skill-icon {
       font-size: 0.7rem;
@@ -297,8 +342,13 @@
       cursor: default;
     }
 
-    .hobby-row:hover { padding-left: 0.75rem; }
-    .hobby-row:first-child { border-top: 1px solid var(--border); }
+    .hobby-row:hover {
+      padding-left: 0.75rem;
+    }
+
+    .hobby-row:first-child {
+      border-top: 1px solid var(--border);
+    }
 
     .hobby-num {
       font-size: 0.7rem;
@@ -331,7 +381,9 @@
       letter-spacing: 0.1em;
     }
 
-    footer span { color: var(--accent); }
+    footer span {
+      color: var(--accent);
+    }
 
     /* CURSOR BLINK */
     .blink {
@@ -343,7 +395,11 @@
       animation: blink 1s step-end infinite;
     }
 
-    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
 
     /* FADE IN */
     .fade-in {
@@ -353,21 +409,44 @@
     }
 
     @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.35s; }
-    .delay-4 { animation-delay: 0.5s; }
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.35s;
+    }
+
+    .delay-4 {
+      animation-delay: 0.5s;
+    }
 
     @media (max-width: 600px) {
-      nav { padding: 0 1rem; }
-      section { padding: 100px 1rem 60px; }
-      .nav-links { gap: 1rem; }
+      nav {
+        padding: 0 1rem;
+      }
+
+      section {
+        padding: 100px 1rem 60px;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <nav>
@@ -389,7 +468,7 @@
 
     <p class="hero-desc fade-in delay-2">
       DevOps Engineer focused on building reliable, scalable infrastructure.
-      I automate everything — from pipelines to provisioning — so teams can
+      I automate everything â€” from pipelines to provisioning â€” so teams can
       ship faster and sleep better.
     </p>
 
@@ -427,7 +506,8 @@
       <div class="skill-card">
         <div class="skill-icon">// containers</div>
         <div class="skill-name">Docker & Kubernetes</div>
-        <div class="skill-desc">Containerizing applications and orchestrating workloads at scale with K8s clusters.</div>
+        <div class="skill-desc">Containerizing applications and orchestrating workloads at scale with K8s clusters.
+        </div>
         <div class="tags">
           <span class="tag">Docker</span>
           <span class="tag">Kubernetes</span>
@@ -439,7 +519,7 @@
       <div class="skill-card">
         <div class="skill-icon">// cloud</div>
         <div class="skill-name">AWS</div>
-        <div class="skill-desc">Deploying and managing cloud infrastructure — EC2, S3, RDS, EKS, IAM, and more.</div>
+        <div class="skill-desc">Deploying and managing cloud infrastructure â€” EC2, S3, RDS, EKS, IAM, and more.</div>
         <div class="tags">
           <span class="tag">EC2</span>
           <span class="tag">S3</span>
@@ -452,7 +532,8 @@
       <div class="skill-card">
         <div class="skill-icon">// iac</div>
         <div class="skill-name">Terraform</div>
-        <div class="skill-desc">Writing version-controlled infrastructure as code to provision repeatable environments.</div>
+        <div class="skill-desc">Writing version-controlled infrastructure as code to provision repeatable environments.
+        </div>
         <div class="tags">
           <span class="tag">Terraform</span>
           <span class="tag">Ansible</span>
@@ -511,7 +592,9 @@
         <div class="hobby-num">001</div>
         <div class="hobby-content">
           <div class="hobby-title">Homelab Tinkering</div>
-          <div class="hobby-body">Running a self-hosted homelab with Raspberry Pis and old machines — experimenting with Proxmox, self-hosted apps, and network setups. It's where ideas get tested before they go to real infra.</div>
+          <div class="hobby-body">Running a self-hosted homelab with Raspberry Pis and old machines â€” experimenting
+            with Proxmox, self-hosted apps, and network setups. It's where ideas get tested before they go to real
+            infra.</div>
         </div>
       </div>
 
@@ -519,7 +602,8 @@
         <div class="hobby-num">002</div>
         <div class="hobby-content">
           <div class="hobby-title">Open Source Exploration</div>
-          <div class="hobby-body">Reading through repos of DevOps tools I use daily — understanding how Kubernetes controllers, CI runners, and monitoring exporters actually work under the hood.</div>
+          <div class="hobby-body">Reading through repos of DevOps tools I use daily â€” understanding how Kubernetes
+            controllers, CI runners, and monitoring exporters actually work under the hood.</div>
         </div>
       </div>
 
@@ -527,7 +611,9 @@
         <div class="hobby-num">003</div>
         <div class="hobby-content">
           <div class="hobby-title">Gaming</div>
-          <div class="hobby-body">Strategy and simulation games — anything that involves systems thinking, resource management, and making decisions with incomplete information. The DevOps mindset transfers surprisingly well.</div>
+          <div class="hobby-body">Strategy and simulation games â€” anything that involves systems thinking, resource
+            management, and making decisions with incomplete information. The DevOps mindset transfers surprisingly
+            well.</div>
         </div>
       </div>
 
@@ -535,7 +621,8 @@
         <div class="hobby-num">004</div>
         <div class="hobby-content">
           <div class="hobby-title">Tech Blogging & Learning</div>
-          <div class="hobby-body">Writing notes and summaries while learning new tools. Following the DevOps, platform engineering, and cloud-native community through blogs, YouTube, and podcasts.</div>
+          <div class="hobby-body">Writing notes and summaries while learning new tools. Following the DevOps, platform
+            engineering, and cloud-native community through blogs, YouTube, and podcasts.</div>
         </div>
       </div>
 
@@ -547,6 +634,5 @@
   </footer>
 
 </body>
+
 </html>
-< ! - -   t r i g g e r   c i   - - >  
- 
